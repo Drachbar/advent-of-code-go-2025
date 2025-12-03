@@ -48,34 +48,36 @@ func SolvePart2(data string) int {
 			panic(err)
 		}
 
-		for amount >= 100 || amount <= -100 {
-			if amount >= 100 {
-				amount -= 100
-				numberOfZeroClicks++
-			}
-			if amount <= -100 {
-				amount += 100
-				numberOfZeroClicks++
-			}
+		for amount >= 100 {
+			amount -= 100
+			numberOfZeroClicks++
 		}
 
 		if strings.EqualFold(direction, "r") {
-			for amount > 0 {
-				dial++
-				if dial == 0 || dial%100 == 0 {
+			if dial < 0 {
+				dial += amount
+				if dial >= 0 {
 					numberOfZeroClicks++
-					dial = 0
 				}
-				amount--
+			} else {
+				dial += amount
+				if dial >= 100 {
+					numberOfZeroClicks++
+					dial -= 100
+				}
 			}
 		} else {
-			for amount > 0 {
-				dial--
-				if dial == 0 || dial%100 == 0 {
+			if dial > 0 {
+				dial -= amount
+				if dial <= 0 {
 					numberOfZeroClicks++
-					dial = 0
 				}
-				amount--
+			} else {
+				dial += 100
+				dial -= amount
+				if dial <= 0 {
+					numberOfZeroClicks++
+				}
 			}
 		}
 
