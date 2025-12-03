@@ -14,6 +14,6 @@ func main() {
 	}
 
 	fmt.Println(day02.SolvePart1(string(data)))
-	//fmt.Println(day01.SolvePart2(string(data)))
+	fmt.Println(day02.SolvePart2(string(data)))
 
 }
